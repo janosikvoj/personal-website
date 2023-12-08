@@ -34,7 +34,7 @@ setTimeout(()=>{document.querySelectorAll(".graphic__symbol").forEach((el)=>{el.
 const lerp=(x,y,a)=>x*(1-a)+y*a;const clamp=(a,min=0,max=1)=>Math.min(max,Math.max(min,a));const invlerp=(x,y,a)=>clamp((a-x)/(y-x));const range=(x1,y1,x2,y2,a)=>lerp(x2,y2,invlerp(x1,y1,a));function handleScroll(){if(scrollAmount<0)scrollAmount=0;if(27000<=scrollAmount){scrollAmount=27000;document.getElementById("data").innerText=6.5;document.getElementById("unit").innerText="KB";document.getElementById("bits").innerText="~52000 bits";graphicHTML.innerHTML="<span class='graphic__symbol --1'>🖥️</span>";graphicTooltip.innerHTML="this website = <span>ONLY 6.5 KB</span>";animateGraphic();adjustFontSize();return}
 bytes=scrollToBytes(scrollAmount);updateText();displayGraphic();animateGraphic();adjustFontSize();}
 window.addEventListener("wheel",(e)=>{scrollAmount+=e.deltaY;handleScroll();});var touchstartY=0;var touchendY=0;window.addEventListener('touchstart',function(e){touchstartY,touchendY=e.touches[0].screenY;})
-window.addEventListener('touchmove',function(e){touchstartY=e.touches[0].screenY;let deltaY=touchendY-touchstartY;scrollAmount+=deltaY;handleScroll();touchendY=touchstartY;})
+window.addEventListener('touchmove',function(e){touchstartY=e.touches[0].screenY;let deltaY=touchendY-touchstartY;scrollAmount+=deltaY*2;handleScroll();touchendY=touchstartY;})
 addEventListener("mousemove",(e)=>{graphicTooltip.style.top=e.clientY+"px";graphicTooltip.style.left=e.clientX+"px";if(graphicHTML.matches(':hover')){graphicTooltip.classList.remove("--hidden");}else{graphicTooltip.classList.add("--hidden");}});</script>
 </body>
 </html>
